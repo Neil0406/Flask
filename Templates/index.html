@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+</head>
+<body>
+    <div style="width: 100%; height: 45px;"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">首頁</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+<!-- ---------------------------------------------------------------------------- -->
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-6">日期:{{today}}</h1>
+            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        </div>
+    </div>
+<!-- ---------------------------------------------------------------------------- -->
+<div class="container-fluid">
+        <div class="row masonry">
+            <div class="col-md-6  item">
+                <div class="card" style="width: 100%;">
+                <div class="card-header">天氣(中央氣象局)
+                    <button type="button" class="btn btn-outline-secondary">臺北市</button>
+                    <button type="button" class="btn btn-outline-secondary">新北市</button>
+                    <button type="button" class="btn btn-outline-secondary">城市</button>
+                </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-3">時間</div>
+                                <div class="col-2">狀態</div>
+                                <div class="col-2">氣溫</div>
+                                <div class="col-2">舒適度</div>
+                                <div class="col-2">降雨率</div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-3">{{data[5]}}</div>                    
+                                <div class="col-2">{{data[0]}}</div>
+                                <div class="col-2">{{data[２]}}-{{data[１]}}</div>
+                                <div class="col-2">{{data[3]}}</div>
+                                <div class="col-2">{{data[4]}}%</div> 
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-3">{{data1[5]}}</div>                    
+                                <div class="col-2">{{data1[0]}}</div>
+                                <div class="col-2">{{data1[２]}}-{{data1[１]}}</div>
+                                <div class="col-2">{{data1[3]}}</div>
+                                <div class="col-2">{{data1[4]}}%</div> 
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-3">{{data2[5]}}</div>                    
+                                <div class="col-2">{{data2[0]}}</div>
+                                <div class="col-2">{{data2[２]}}-{{data2[１]}}</div>
+                                <div class="col-2">{{data2[3]}}</div>
+                                <div class="col-2">{{data2[4]}}%</div> 
+                            </div>
+                        </li>
+                    </ul>
+                </div>             
+            </div>
+                <div class="col-md-6 item">
+                    <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">今日頭條</h5>
+                        {%for title, des, url, img in news %}
+                            <p class="card-text">
+                                {{title}}
+                                <button type="button" onclick="window.open('{{url}}');" class="btn btn-outline-primary">Go</button>
+                            </p>
+                        {%endfor%}
+                    </div>
+                    </div>
+                </div>
+                
+
+    <!-- </div>
+</div> -->
+<!-- ---------------------------------------------------------------------------- -->
+<!-- <div class="container-fluid">
+    <div class="row masonry"> -->
+        <div class="col-md-6  item">
+            <div style="height: 20px;"></div>
+            <div class="card" style="width: 100%;">
+                <div class="card-header">匯率 (臺灣銀行){{usd['時間']}}</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-2">幣別</div>
+                                <div class="col-2">現金買價</div>
+                                <div class="col-2">現金賣價</div>
+                                <div class="col-2">即期買價</div>
+                                <div class="col-2">即期賣價</div>
+                            </div>
+                        </li> 
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-2">{{usd['幣別']}}</div>                    
+                                    <div class="col-2">{{usd['現金買價']}}</div>                    
+                                    <div class="col-2">{{usd['現金賣價']}}</div>
+                                    <div class="col-2">{{usd['即期買價']}}</div>
+                                    <div class="col-2">{{usd['即期賣價']}}</div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-2">{{aud['幣別']}}</div>                    
+                                    <div class="col-2">{{aud['現金買價']}}</div>                    
+                                    <div class="col-2">{{aud['現金賣價']}}</div>
+                                    <div class="col-2">{{aud['即期買價']}}</div>
+                                    <div class="col-2">{{aud['即期賣價']}}</div>
+                                </div>
+                            </li> 
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-2">{{jpy['幣別']}}</div>                    
+                                    <div class="col-2">{{jpy['現金買價']}}</div>                    
+                                    <div class="col-2">{{jpy['現金賣價']}}</div>
+                                    <div class="col-2">{{jpy['即期買價']}}</div>
+                                    <div class="col-2">{{jpy['即期賣價']}}</div>
+                                </div>
+                            </li> 
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-2">{{eur['幣別']}}</div>                    
+                                    <div class="col-2">{{eur['現金買價']}}</div>                    
+                                    <div class="col-2">{{eur['現金賣價']}}</div>
+                                    <div class="col-2">{{eur['即期買價']}}</div>
+                                    <div class="col-2">{{eur['即期賣價']}}</div>
+                                </div>
+                            </li>                    
+
+                    </ul>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ---------------------------------------------------------------------------- -->
+<div style="width: 100%; height: 30px;"></div>
+<div style="width: 100%; height: 2px; background-color: rgb(56, 3, 3)"></div>
+<div class="footer" style="width: 100%; height: 70px;"></div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script>
+    $(function(){
+    $('.masonry').masonry({
+    itemSelector: '.item'
+    });
+    });
+    </script>
+
+
+    
+
+</body>
+</html>
